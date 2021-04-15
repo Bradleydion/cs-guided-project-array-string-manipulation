@@ -20,6 +20,26 @@ Output: -1
 Explanation:
 There is no index that satisfies the conditions in the problem statement.
 """
+# def pivot_index(nums):
+#     for i in range(len(nums)):
+#         l_sum = sum(nums[0:i]) # create a slice of the array from the beging to the i index
+#         r_sum = sum(nums[i+1:]) #create a slice of the array from the i index to the end of the array. 
+#         if l_sum == r_sum:
+#             return i
+#     return -1
+
+# print (pivot_index(nums = [1,7,3,6,5,6]))
+
 def pivot_index(nums):
-    # Your code here
+    l_sum = 0
+    r_sum = sum(nums)
+    for i in range(len(nums)):
+        r_sum -= nums[i]
+        if i != 0:
+            l_sum += nums[i-1]
+        if l_sum == r_sum:
+            return i
+    return -1 #this algorithm reduces the run time by preventing from re-adding all of the sums on either side of i by moving the sum based on the location of i and stopping when the sum is equal on both sides of i. 
+
+print (pivot_index(nums = [1,7,3,6,5,6]))
 
